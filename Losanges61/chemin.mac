@@ -1,0 +1,7 @@
+chemin(M,longueur,noeud1,noeud2):= block(
+  [M1,M2,chemins],
+  M1:row(M^^longueur,noeud1),
+  M2:col(M1,noeud2),
+  chemins:first(first(args(M2))),
+  printf(false,"Le nombre de chemin(s) de longueur ~d allant du noeud ~d au noeud ~d  est ~d.",longueur,noeud1,noeud2,chemins)
+);

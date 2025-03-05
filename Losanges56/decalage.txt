@@ -1,0 +1,6 @@
+ADRESSE 0	; début des données
+nombre:		; label permettant de retrouver l'adresse 0
+VAL 170		; on stocke 170 (soit 10101010) à l'adresse 0
+ADRESSE 128 ; le code commence à l'adresse 128
+DECG nombre ; décalage à gauche du nombre à l'adresse 0
+STOP		; fin du programme

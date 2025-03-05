@@ -1,0 +1,30 @@
+ADRESSE 0		; début des données
+op1:
+VAL 125			; premier opérande (125) à l'adresse 0
+op2:
+VAL 254			; second opérande (254) à l'adresse 1
+op1pf:
+VAL 0			; poids fort du premier opérande (résultat intermédiaire)
+x:			
+VAL 0			; résultat (poids faible)
+y:			
+VAL 0			; résultat (poids fort)
+ADRESSE 128 	; le code commence à l'adresse 128
+CHARGEA #0
+SAUT entree-boucle
+addition:
+EFFR			; efface le bit R
+ADDAR op1		; additionne op1 à l'accumulateur
+ECRISA x		; sauvegarde le poids faible du résultat en mémoire
+CHARGEA y		; charge le poids fort du résultat dans l'accumulateur
+ADDAR op1pf		; additionne op1pf à l'accumulateur
+ECRISA y		; sauvegarde le poids fort du résultat en mémoire
+CHARGEA x		; restaure le contenu de l'accumulateur avec le le poids faible du résultat
+boucle:
+DECG op1		; décale le premier opérande à gauche
+ROTG op1pf		; rotation à gauche du poids fort du premier opérande
+entree-boucle:
+DECD op2		; bit de poids faible du second opérande dans R
+SAUTR addition	; si R=1, on fait l'addition
+SAUTNZ boucle	; on reboucle tant que le second opérande est non nul
+STOP			; fin du programme

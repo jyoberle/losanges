@@ -1,0 +1,17 @@
+/* Script Maxima calculant des valeurs approchées de la fonction exponentielle à partir */
+/* de l'algorithme de Remez du Commodore 64 */
+kill(all); /* pour effacer toute trace des calculs antérieurs */
+R(x):=2.1498763701e-5 * x^7 + 1.4352314037e-4 * x^6 + 1.3422634825e-3 * x^5
+ + 9.6140170135e-3 * x^4 + 5.5505126860e-2 * x^3 + 0.24022638460 * x^2 + 0.69314718618 * x + 1;
+
+for i in [-10,-1,-0.5,-0.1,0,0.1,0.5,1,10] do
+(
+	T:i*log(%e)/log(2),
+	N:floor(T), /* partie entière */
+	F:T - floor(T), /* partie fractionnaire */
+	val:float(2^N*R(F)), /* formule du Commodore 64 utilisant l'algorithme de Remez */
+	valm:float(exp(i)), /* calcul direct par la fonction exponentielle de Maxima */
+	display(val), /* affichage Remez */
+	display(valm), /* affichage Maxima */
+	display(abs(valm-val)) /* affichage de la différence */
+);

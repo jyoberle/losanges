@@ -1,0 +1,9 @@
+msolve(P,X):= block(
+  [M,s,i,e],
+  M:transpose(P).X-X,
+  s:map(first,args(M)),
+  i:map(first,args(X)),
+  e:apply("+",i )=1,
+  s:append(s,[e]),
+  solve(s,i)
+);

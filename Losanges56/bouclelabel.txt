@@ -1,0 +1,13 @@
+ADRESSE 0		; à l'adresse 0...
+compteur:
+VAL 5			; on met le compteur à 5
+resultat:		; l'adresse 1...
+VAL 0			; contiendra le résultat de 5+4+3+2+1
+ADRESSE 128		; le code commence à l'adresse 128		
+CHARGEA #0		; l'accumulateur est chargé avec la valeur 0
+boucle:
+ADDA compteur	; on additionne à l'accumulateur la valeur du compteur
+DEC compteur	; on décrémente le compteur
+SAUTNZ boucle	; on reboucle tant que Z = 0
+ECRISA resultat	; on écrit le contenu de l'accumulateur à l'adresse 1
+STOP			; fin du programme

@@ -1,0 +1,10 @@
+ADRESSE 0		; à l'adresse 0...
+VAL 7			; ...on met la valeur 7
+VAL 3			; et la valeur 3 à l'adresse 1
+ADRESSE 128		; le code commence à l'adresse 128		
+CHARGEA 0		; l'accumulateur est chargé avec la valeur à l'adresse 0 (soit 7)
+OUEXA #255		; on inverse tous les bits de l'accumulateur...
+ADDA #1			; et on additionne 1 au résultat : l'opposé de 7 se trouve dans l'accumulateur
+ADDA 1			; on additionne 3 (contenu à l'adresse 1 de la mémoire) à l'accumulateur
+ECRISA 2		; le résultat (3 - 7 = -4, en complément à deux) est stocké à l'adresse 2
+STOP			; fin du programme

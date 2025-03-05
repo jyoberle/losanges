@@ -1,0 +1,15 @@
+ADRESSE 0	; on démarre à l'adresse 0
+VAL 5		; on stocke 5 à l'adresse 0
+VAL 4		; on stocke 4 à l'adresse 1
+VAL 3		; et ainsi de suite
+VAL 2
+VAL 1
+
+ADRESSE 128	; notre programme débute à l'adresse 128
+CHARGEA 0	; on écrit 5 dans l'accumulateur (adresse 0 de la mémoire)
+ADDA 1		; on additionne à l'accumulateur la valeur à l'adresse 1 de la mémoire (soit 4)
+ADDA 2		; on additionne la valeur à l'adresse 2 de la mémoire (soit 3)
+ADDA 3		; et ainsi de suite
+ADDA 4
+ECRISA 5	; on écrit le contenu de l'accumulateur (soit le résultat 15) à l'adresse 5
+STOP		; fin du programme

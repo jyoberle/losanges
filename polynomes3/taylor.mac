@@ -1,0 +1,14 @@
+/* Script Maxima établissant la formule de Taylor pour une fonction donnée */
+/* et jusqu'à un rang donné */
+kill(all); /* pour effacer toute trace des calculs antérieurs */
+taylor(f,n):= block (
+	[L,i,s,a,g],
+	define(g(x),f), /* on transforme f en fonction, renommée g */
+	L:[], /* la liste où seront stockés les monômes de la formule */
+	/* On applique la formule de Taylor de 0 jusqu'au rang n */
+	/* L'instruction cons permet la concaténation des monômes dans la liste */
+	for i:0 thru n do L:cons(h^i/(i!)*diff(g(a),a,i),L),
+	/* On somme tous les monômes (attention : les listes commencent au rang 1) */
+	s:sum(L[i],i,1,n+1),
+	return(s)
+);

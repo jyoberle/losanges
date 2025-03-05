@@ -1,0 +1,14 @@
+/* Script Maxima calculant des valeurs approchées de la fonction exponentielle */
+
+/* Les valeurs de h sont données dans un tableau */
+for i in [-10,-1,-0.5,-0.1,0,0.1,0.5,1,10] do 
+(
+	/* Formule de Taylor : il est nécessaire d'utiliser subst car t est une variable */
+	/* et non une fonction */
+	val:float(ev(subst(a=0,t),h=i)), 
+	/* Calcul direct par la fonction exponentielle de Maxima */
+	valm:float(exp(i)),
+	display(val), /* affichage Taylor */
+	display(valm), /* affichage Maxima */
+	display(valm-val) /* affichage de la différence */
+);

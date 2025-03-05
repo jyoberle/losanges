@@ -1,0 +1,52 @@
+/* Script Maxima calculant la valeur décimale d'un nombre exprimée dans la norme IEEE 754 */
+
+/* Fonction calculant l'exposant */
+exposant(chaine):= block (
+	[somme,i,c],
+	/* On inverse les bits de la chaine pour simplifier les calculs */
+	/* car initialement le bit de poids faible est à droite */
+	inversee:sreverse(chaine),  
+	somme:0,
+	/* On parcourt tous les bits de la chaine */
+	for i:1 thru slength(inversee) do
+	(
+		c:substring(inversee,i,i+1), /* c est le caractère à la position i */
+		somme:somme + eval_string(c)*2**(i-1) /* on construit la somme binaire */
+	),
+	return(somme - 127) /* valeur de l'exposant biaisée */
+);
+
+/* Fonction calculant la mantisse */
+mantisse(chaine):= block (
+	[somme,i,c],
+	somme:0,
+	/* On parcourt tous les bits de la chaine */
+	for i:1 thru slength(chaine) do
+	(
+		c:substring(chaine,i,i+1),
+		/* On construit la somme binaire avec des puissances de 2 négatives */
+		somme:somme + eval_string(c)*2**(-i)
+	),
+	return(1 + somme) /* valeur de la mantisse */
+);
+
+/* Fonction déterminant le signe */
+signe(chaine):= block (
+	[signe],
+	
+	/* Si le bit de signe vaut 1, le signe de la mantisse est négatif */
+	if eval_string(chaine) > 0 then return(-1),
+	return(1) /* le signe est positif */
+);
+
+/* Nombre binaire sous forme de chaine de caractères; il vaut -118,625 */
+b : "11000010111011010100000000000000";
+
+/* Petite vérification de la longueur */
+if slength(b) # 32 then error("La chaine doit faire 32 bits");
+	
+s:substring(b,1,2); /* signe */
+e:substring(b,2,10); /* exposant */
+m:substring(b,10); /* mantisse */
+nombre:signe(m)*mantisse(m)*2**(exposant(e)); /* nombre décimal */
+display(float(nombre)); /* affichage */

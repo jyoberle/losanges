@@ -1,0 +1,14 @@
+ADRESSE 0		; à l'adresse 0...
+VAL 170			; ...on met le premier opérande
+VAL 240			; et le second à l'adresse 1
+VAL 0			; l'adresse 2 contiendra une partie du résultat
+VAL 0			; l'adresse 3 le reste du résultat
+ADRESSE 128		; le code commence à l'adresse 128		
+CHARGEA 0		; l'accumulateur est chargé avec le premier opérande
+POSR			; on met la retenue à 1
+SOUSAR 1		; puis on soustrait le second opérande
+ECRISA 2		; le résultat (tronqué) est stocké à l'adresse 2
+CHARGEA #0		; l'accumulateur est mis à 0
+SOUSAR #0		; on soustrait 0 mais avec le bit de retenue
+ECRISA 3		; le résultat complémentaire est stocké à l'adresse 3
+STOP			; fin du programme

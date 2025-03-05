@@ -1,0 +1,7 @@
+ADRESSE 0		; à l'adresse 0...
+VAL 240			; ...on met la valeur 240	
+ADRESSE 128		; le code commence à l'adresse 128		
+CHARGEA #170	; l'accumulateur est chargé avec la valeur 170
+OUEXA 0			; on effectue un OU EXCLUSIF entre l'accumulateur et l'adresse 0 (soit 240)
+ECRISA 1		; le résultat est stocké à l'adresse 1 de la mémoire
+STOP			; fin du programme

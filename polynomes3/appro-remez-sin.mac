@@ -1,0 +1,31 @@
+/* Script Maxima calculant des valeurs approchées de la fonction sinus */
+/* à partir de l'algorithme de Remez */
+kill(all); /* pour effacer toute trace des calculs antérieurs */
+P(x) := -14.381390672 * x^11 + 42.007797122 * x^9 - 76.704170257 * x^7
++ 81.605223686 * x^5 - 41.341702104 * x^3 + 6.2831853069 * x;
+
+for i in [-1,-0.5,-0.1,0.1,0.5,1.5,2,2.5] do
+(
+
+	x2:i/(2*%pi),
+	y:x2 - floor(x2),
+
+	/* On considère les trois cas possibles */
+	if(y >= 0 and y <= 0.25) then (
+		y2:y
+	),
+
+	if(y > 0.25 and y <= 0.75) then (
+		y2:0.5 - y
+	),
+	
+	if(y > 0.75 and y < 1) then (
+		y2 : y - 1
+	),
+	
+	val:float(P(y2)), /* formule de Remez 64 */
+	valm:float(sin(i)), /* calcul direct par la fonction sinus de Maxima */
+	display(val), /* affichage Remez */
+	display(valm), /* affichage Maxima */
+	display(abs(valm-val)) /* affichage de la différence */
+);

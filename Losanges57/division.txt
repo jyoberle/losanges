@@ -1,0 +1,24 @@
+ADRESSE 0
+dividende:
+VAL 125					; dividende (contiendra le quotient à la fin de l'exécution)
+diviseur:
+VAL 12					; diviseur
+reste:
+VAL 0					; reste (à la fin de l'exécution)
+compteur:
+VAL 8					; compteur
+
+ADRESSE 128:
+CHARGEA #0				; on initialise l'accumulateur avec 0
+DECG dividende			; décalage à gauche du dividende (bit de poids fort va dans R)
+boucle:
+ROTG					; bit du dividende, dans R, introduit à droite de l'accumulateur
+COMPA diviseur			; comparaison entre l'accumulateur et le diviseur
+SAUTNR pas-de-soustraction	; si accumulateur < diviseur alors R = 0 et pas de soustraction
+SOUSAR diviseur 		; dans le cas contraire, soustraction du diviseur à l'accumulateur
+pas-de-soustraction:
+ROTG dividende			; rotation à gauche du dividende
+DEC compteur			; décrémentation du compteur
+SAUTNZ boucle			; on reboucle tant que le compteur ne tombe pas à 0
+ECRISA reste			; le reste se trouve dans l'accumulateur : on l'écrit dans reste
+STOP					; fin du programme
