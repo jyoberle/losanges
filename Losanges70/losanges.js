@@ -70,7 +70,7 @@ function convertitFonctionsEnChaines(str) {
 	// On retransforme l'arbre de noeuds en chaine
 	var str = math.string(transformee);
 
-	// On finit en transformant les autres fonctions par substitutions (par example ln(x) deviendra Math.log(x))
+	// On finit en transformant les autres fonctions par substitutions (par exemple ln(x) deviendra Math.log(x))
 	for(i = 0;i < tableauFonctions.length;i++) {
 		str = str.replaceAll(tableauFonctions[i],tableauConversions1[i]);
 	}
