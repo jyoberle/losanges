@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	new QRCode(document.getElementById("qrcode"), "http://google.com");
+	new QRCode(document.getElementById("qrcode"), "https://jyoberle.github.io/losanges/Losanges71/");
 });
 
 function clic() {
